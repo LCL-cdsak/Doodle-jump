@@ -14,9 +14,10 @@ class result : public QDialog
 public:
     explicit result(QWidget *parent = nullptr);
     ~result();
-
+     void set_score(float x);
 private:
     Ui::result *ui;
+    int final_score = 0;
 };
 
 #endif // RESULT_H

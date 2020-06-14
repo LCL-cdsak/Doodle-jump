@@ -25,16 +25,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    blackhole.cpp \
+    bullet.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    menu.cpp \
+    monster.cpp \
+    platform.cpp \
+    form1.cpp \
+    form2.cpp \
+    result.cpp \
+    rocket.cpp \
+    spring.cpp
 
 HEADERS += \
-        mainwindow.h
+    blackhole.h \
+    bullet.h \
+        mainwindow.h \
+    menu.h \
+    monster.h \
+    platform.h \
+    form1.h \
+    form2.h \
+    result.h \
+    rocket.h \
+    spring.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        menu.ui \
+        result.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    images.qrc

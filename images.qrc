@@ -1,2 +1,23 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file alias="background">images/background.png</file>
+        <file alias="doodle">images/doodle.png</file>
+        <file alias="platform">images/platform.png</file>
+        <file alias="platform2">images/platform2.png</file>
+        <file alias="shooting">images/shooting.png</file>
+        <file alias="icedoodle">images/ice-left2x.png</file>
+        <file alias="bullet">images/ice-snow-16.png</file>
+        <file alias="Dot">images/1200px-BlackDot.svg.png</file>
+        <file alias="Monster1">images/Monster1.png</file>
+        <file alias="Monster2">images/Monster2.png</file>
+        <file alias="after">images/spring.png</file>
+        <file alias="before">images/game-tiles-space2x.png</file>
+        <file alias="flying">images/removebg-preview.png</file>
+        <file alias="rocket">images/jetpack-snow2x.png</file>
+        <file alias="pause">images/pngtree-pause-vector-icon-png-image_470715.png</file>
+        <file alias="exit">images/done@2x.png</file>
+        <file alias="play">images/play@2x.png</file>
+        <file alias="menu">images/Default@2x.png</file>
+        <file alias="hole">images/hole@2x.png</file>
+    </qresource>
+</RCC>

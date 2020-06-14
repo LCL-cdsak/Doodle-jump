@@ -6,9 +6,16 @@ result::result(QWidget *parent) :
     ui(new Ui::result)
 {
     ui->setupUi(this);
+    this->setWindowTitle("DOODLE JUMP!");
 }
 
 result::~result()
 {
     delete ui;
+}
+
+void result::set_score(float x)
+{
+    final_score = x;
+    ui->label_3->setNum(-final_score);
 }
