@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,600,800);
     ui->graphicsView->setScene(scene);
-    static QPixmap back(":/background");
+    QPixmap back(":/background");
     QPixmap pic(":/icedoodle");
-    QGraphicsPixmapItem *background = new QGraphicsPixmapItem();
+    background = new QGraphicsPixmapItem();
     background->setPixmap(back.scaledToHeight(800).scaledToWidth(600));
     background->setZValue(-2);
     scene->addItem(background);
@@ -48,6 +48,16 @@ MainWindow::MainWindow(QWidget *parent) :
         m[i]->connect(this,SIGNAL(monster_move(float)),m[i],SLOT(move(float)));
         m[i]->connect(timer,SIGNAL(timeout()),m[i],SLOT(animation()));
         scene->addItem(static_cast<QGraphicsPixmapItem*>(m[i]));
+    }
+    for(int i =0;i<2;i++) //generate monster2
+    {
+        m2[i] = nullptr;
+        m2[i] = new monster2;
+        m2[i]->setPixmap(QPixmap(":/Monster2").scaledToWidth(60));
+        m2[i]->setPos(0,1000);
+        m2[i]->connect(this,SIGNAL(monster_move(float)),m2[i],SLOT(move(float)));
+        m2[i]->connect(timer,SIGNAL(timeout()),m2[i],SLOT(animation()));
+        scene->addItem(static_cast<QGraphicsPixmapItem*>(m2[i]));
     }
     for(int i =0;i<2;i++) //generate blackhole
     {
@@ -120,6 +130,15 @@ void MainWindow::jump()
     {
         dy = -12;
         m[i]->setPos(-600,0);
+    }
+    for(int i =0;i<2;i++)
+    if(dy>0 &&player->y()+100<m2[i]->y()
+            &&player->y()+100+dy>=m2[i]->y()
+            &&player->x()>=m2[i]->x()-80
+            &&player->x()<=m2[i]->x()+80)
+    {
+        dy = -12;
+        m2[i]->setPos(0,1000);
     }
     for(int i =0;i<5;i++)
     if(dy>0 &&player->y()+100<s[i]->y()
@@ -281,6 +300,8 @@ void MainWindow::set_hazard()
             monster_count=0;
         if(blackhole_count==2)
             blackhole_count = 0;
+        if(monster2_count==2)
+            monster2_count = 0;
         bool if_collide = true;
         count--;
         if(rand()%5==0)
@@ -301,7 +322,8 @@ void MainWindow::set_hazard()
              }
         }
         else
-        {
+        {if(rand()%3!=0)
+            {
             while(1)
             {
                 if_collide = false;
@@ -317,7 +339,24 @@ void MainWindow::set_hazard()
                     break;
                 }
              }
-        }
+            }
+            else
+            {
+                while(1)
+                {
+                    if_collide = false;
+                    m2[monster2_count]->setPos(rand()%500,player->y()-1600);
+                    for(int i =0;i<20;i++)
+                        if_collide =m2[monster2_count]->collidesWithItem(plat[i]->plat);
+                    if(if_collide)
+                        continue;
+                    else
+                    {
+                        monster2_count++;
+                        break;
+                    }
+                 }
+            }}
     }
 }
 void MainWindow::if_collide()
@@ -328,6 +367,13 @@ void MainWindow::if_collide()
             {
                 b[i]->setPos(-800,0);
                 m[j]->setPos(-600,0);
+            }
+    for(int i=0;i<bullet_nember;i++)
+        for(int j=0;j<2;j++)
+            if(b[i]->collidesWithItem(m2[j]))
+            {
+                b[i]->setPos(-800,0);
+                m2[j]->setPos(-600,0);
             }
     for(int i =0;i<5;i++)
         if(player->collidesWithItem(r[i]))
@@ -345,6 +391,14 @@ void MainWindow::if_collide()
         }
     for(int i=0;i<2;i++)
         if(player->collidesWithItem(m[i]))
+        {
+            end->set_score(score);
+            end->show();
+            timer->stop();
+            hide();
+        }
+    for(int i=0;i<2;i++)
+        if(player->collidesWithItem(m2[i]))
         {
             end->set_score(score);
             end->show();
@@ -422,4 +476,29 @@ void MainWindow::on_pushButton_clicked()
         timer->start(8);
         return;
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QPixmap back(":/background");
+    background->setPixmap(back.scaledToHeight(800).scaledToWidth(600));
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QPixmap back(":/background2");
+    background->setPixmap(back.scaledToHeight(800).scaledToWidth(600));
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QPixmap back(":/background3");
+    background->setPixmap(back.scaledToHeight(800).scaledToWidth(600));
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    QPixmap back(":/background4");
+    background->setPixmap(back.scaledToHeight(800).scaledToWidth(600));
 }

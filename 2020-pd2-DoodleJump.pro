@@ -31,6 +31,7 @@ SOURCES += \
         mainwindow.cpp \
     menu.cpp \
     monster.cpp \
+    monster2.cpp \
     platform.cpp \
     form1.cpp \
     form2.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
         mainwindow.h \
     menu.h \
     monster.h \
+    monster2.h \
     platform.h \
     form1.h \
     form2.h \

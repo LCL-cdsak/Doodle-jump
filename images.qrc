@@ -19,5 +19,8 @@
         <file alias="play">images/play@2x.png</file>
         <file alias="menu">images/Default@2x.png</file>
         <file alias="hole">images/hole@2x.png</file>
+        <file alias="background4">images/underwater-bck@2x.png</file>
+        <file alias="background3">images/hop-bck@2x.png</file>
+        <file alias="background2">images/background 2.png</file>
     </qresource>
 </RCC>

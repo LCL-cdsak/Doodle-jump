@@ -15,6 +15,7 @@
 #include <rocket.h>
 #include <result.h>
 #include <blackhole.h>
+#include <monster2.h>
 #define bullet_nember 30
 namespace Ui {
 class MainWindow;
@@ -42,15 +43,25 @@ protected:
     void keyReleaseEvent(QKeyEvent *e);
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsPixmapItem *player;
+    QGraphicsPixmapItem *background;
     float x=0,y=0;
     float dx=0,dy=0;
     bool is_moving_left=false, is_moving_right=false,paused = false,transformed;
     platform *plat[20];
-    int k=0,score=0,temp = 0,count=0,monster_count = 0,bullet_count = 0,spring_number = 0,rocket_number =0,blackhole_count = 0;
+    int k=0,score=0,temp = 0,count=0,monster_count = 0,bullet_count = 0,spring_number = 0,
+    rocket_number =0,blackhole_count = 0,monster2_count = 0;
     Monster *m[2];
     QTimer *timer,*timer2;
     bullet *b[bullet_nember];
@@ -59,6 +70,8 @@ private:
     blackhole *h[2];
     int flying_height = 4000;
     result *end;
+    monster2 *m2[2];
+    QPixmap back;
 };
 
 #endif // MAINWINDOW_H
