@@ -1,4 +1,4 @@
-# 2020-pd2-DoodleJump
+# DoodleJump
 
 ## Video link
 ## How to play
